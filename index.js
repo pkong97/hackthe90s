@@ -1,28 +1,107 @@
 const express = require('express');
+const hbs = require('hbs');
+const fs = require('fs');
+var bodyParser = require('body-parser')
+
 const port = process.env.PORT || 8080;
 var app = express();
-const hbs = require('hbs');
+
+
 //implement Json file
 const json = require('./json');
 const questions = require('./question');
-const yargs = require('yargs');
-
-//import lodash and yargs
 
 
-hbs.registerPartials(__dirname + '/views/partials');
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+
+hbs.registerPartials(__dirname + '/views');
+hbs.registerPartials(__dirname + '/');
 app.set('view engine', 'hbs');
+
+var user1 = 'jeff';
+var user2 = 'gheff';
+
+// bodyparser setup
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded ({
+    extended: true
+}));
+app.use(bodyParser.json())
+
+
+server.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
+
 
 
 app.get('/', (request, response) => {
     response.render('home.hbs')
 });
 
-app.listen(port, () => {
-    console.log(`Server is up on the port ${port}`);
+app.get('/chatroom', (request, response) => {
+    response.render('chatroom.hbs')
+
+});
+
+app.get('/questions', (request, response) => {
+    var json = fs.readFileSync('q.json');
+    
+    var qs = JSON.parse(json)
+    var sq = JSON.stringify(qs)
+    console.log(sq)
+    response.render('questions.hbs', {
+        user1: user1,
+        user2: user2,
+        questions: sq
+    })
+    
+});
+
+app.post('/questions', (request, response) => {
+    console.log(request.body)
+})
+
+const chat = io.of('/chat');
+
+var answerCount = 0;
+
+chat.on('connection', (socket) => {
+    
+    socket.on('join', (data) => {
+        socket.join(data.room);
+        chat.in(data.room).emit('message', `New user joined ${data.room} room!`);
+
+    });
+    
+
+    socket.on('message', (data) => {
+        answerCount += data.an
+        console.log(answerCount)
+        if (answerCount == 2) {
+            answerCount = 0
+            io.sockets.emit('broadcast', 'reset');
+            console.log('down')
+        }
+        
+
+        chat.in(data.room).emit('message', data.msg, data.name, data.an);
+    });
+
+
+
+
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+
+        chat.emit('message', 'user disconnected');
 
 });
 
 
-console.log('Loading...');
-json.getQuestions(questions.getQuestions());
+// console.log('Loading...');
+// json.getQuestions(questions.getQuestions());
+//     })
+// })

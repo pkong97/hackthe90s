@@ -1,0 +1,20 @@
+{
+  "name": "getaroom",
+  "version": "1.0.0",
+  "description": "90s style chatroom",
+  "main": "server.js",
+  "scripts": {
+    "test": "\"echo\\\"Error: no test specified\\\" && exit 1\""
+  },
+  "author": "Patrick",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "*",
+    "consolidate": "*",
+    "dust": "*",
+    "dustjs-helpers": "*",
+    "dustjs-linkedin": "*",
+    "express": "^4.16.4",
+    "pg": "^7.8.0"
+  }
+}

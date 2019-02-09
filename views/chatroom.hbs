@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chatroom!</title>
+</head>
+
+<body>
+    <div>
+        <div style="width:100%;height:100%">
+            <div>
+                <button type="submit" id="start">Start</button>
+            </div>
+            <div id="chatroom" style="display:none;">
+                <div class="row">
+                    <ul id="messages"> </ul>
+                </div>
+                <div>
+                    <form action="">
+                        <div>
+                            <input type="text" id="m" type="text" placeholder="Message..." aria-label="Message...">
+                            <div>
+                                <button type="submit" class="">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src='/socket.io/socket.io.js'></script>
+    <script>
+        const room = 'chatroom';
+        const socket = io('/chat');
+        $("#start").click(() => {
+            console.log('start')
+            $('#start').hide();
+            $('#chatroom').show();
+        })
+        $('form').submit(() => {
+            let msg = $('#m').val();
+            socket.emit('message', { msg, room });
+            $('#m').val('');
+            return false;
+        });
+
+        socket.on('connect', () => {
+            // emitting to everybody
+            socket.emit('join', { room: room });
+        })
+
+        socket.on('message', (msg) => {
+            $('#messages').append($('<li>').text(msg));
+
+        })
+
+    </script>
+</body>
+
+</html>

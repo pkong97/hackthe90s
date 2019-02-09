@@ -16,12 +16,12 @@
   },
   "homepage": "https://github.com/pkong97/hackthe90s#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "file-system": "^2.2.2",
     "hbs": "^4.0.1",
     "lodash": "^4.17.11",
     "yargs": "^12.0.5"
   },
-  "devDependencies": {},
-  "description": ""
+  "devDependencies": {}
 }
