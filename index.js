@@ -44,12 +44,14 @@ app.get('/', (request, response) => {
 });
 
 app.get('/chatroom', (request, response) => {
-    response.render('chatroom.hbs')
+    response.render('chatroom.hbs', {
+        name: user1
+    })
 
 });
 
 app.get('/questions', (request, response) => {
-    
+
     response.render('questions.hbs', {
         user1: user1,
         user2: user2,
@@ -74,18 +76,20 @@ chat.on('connection', (socket) => {
     });
 
     socket.on('message', (data) => {
-        
-        answers.push(data.msg)
-        if (answers.length == 2) {
-            if (checkAnswers.matchAnswers(answers[0], answers[1])) {
-                chat.in(data.room).emit('answer', 'true')
-            } else {
-                chat.in(data.room).emit('answer', 'false')
+        if (data.room == 'questions') {
+            answers.push(data.msg)
+            if (answers.length == 2) {
+                if (checkAnswers.matchAnswers(answers[0], answers[1])) {
+                    chat.in(data.room).emit('answer', 'true')
+                } else {
+                    chat.in(data.room).emit('answer', 'false')
+                }
+                answers = []
+                chat.in(data.room).emit('broadcast', 'reset')
+                console.log('down')
             }
-            answers = []
-            chat.in(data.room).emit('broadcast', 'reset')
-            console.log('down')
         }
+
 
 
         chat.in(data.room).emit('message', data.msg, data.name, data.an);

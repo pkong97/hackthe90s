@@ -79,14 +79,16 @@
             });
         })
 
-       
-
-
+        // if server sends an answer then it will be displayed
+        // here
         socket.on('answer', function (data) {
             $('#answers').append($('<div>').text(data));
 
         });
 
+        // once both people have answered, server sends a broadcast
+        // and opens the input box again
+        // also puts a new question to answer
         socket.on('broadcast', function (data) {
             console.log('broadcast is: ' + data)
             $('#m').prop('disabled', false);
@@ -101,14 +103,13 @@
             }
         });
 
+        // sends message to server to check if answers are the same
         socket.on('message', (msg, name, an) => {
-
             if (name) {
                 $('#messages').append($('<div>').text(name + ": " + msg));
             } else {
                 $('#messages').append($('<div>').text(msg));
             }
-
         })
 
     </script>
