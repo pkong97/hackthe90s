@@ -10,3 +10,8 @@ const matchAnswers = (answer1, answer2) => {
 const stripAll = (s) => {
 	return s.replace(/[.,\/#!$%\^&@\*;:{}=\-_`~() ]/g,"").toLowerCase();
 }
+
+module.exports{
+	matchAnswers,
+	stripAll
+}
