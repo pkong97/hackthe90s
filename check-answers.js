@@ -1,4 +1,4 @@
-var matchAnswers = function(answer1, answer2) {
+const matchAnswers = (answer1, answer2) => {
 	if (answer1.length == 0 || answer2.length == 0) {
 		return false;
 	}
@@ -7,6 +7,6 @@ var matchAnswers = function(answer1, answer2) {
 	return answer1 == answer2;
 }
 
-var stripAll = function(s) {
+const stripAll = (s) => {
 	return s.replace(/[.,\/#!$%\^&@\*;:{}=\-_`~() ]/g,"").toLowerCase();
 }
