@@ -25,6 +25,9 @@
                             <input type="text" id="m" type="text" placeholder="Message..." aria-label="Message...">
                             
                         </div>
+                        <div id="answers">
+
+                        </div>
                     </form>
                 </div>
             </div>
@@ -89,6 +92,11 @@
             });
         })
 
+
+        socket.on('answer', function (data) {
+            $('#answers').append($('<div>').text(data));
+ 
+        });
 
         socket.on('broadcast', function (data) {
             console.log('broadcast is: ' + data)

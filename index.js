@@ -9,6 +9,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
+const checkAnswers = require('./check-answers.js');
 
 hbs.registerPartials(__dirname + '/views');
 hbs.registerPartials(__dirname + '/');
@@ -61,6 +62,7 @@ app.post('/questions', (request, response) => {
 const chat = io.of('/chat');
 
 var answerCount = 0;
+var answers = [];
 
 chat.on('connection', (socket) => {
     
@@ -74,9 +76,16 @@ chat.on('connection', (socket) => {
     socket.on('message', (data) => {
         answerCount += data.an
         console.log(answerCount)
-        if (answerCount == 2) {
-            answerCount = 0
-            io.sockets.emit('broadcast', 'reset');
+        answers.push(data.msg)
+        if (answers.length == 2) {
+            
+            if (checkAnswers.matchAnswers(answers[0], answers[1])) {
+                chat.in(data.room).emit('answer', 'true')
+            } else { 
+                chat.in(data.room).emit('answer', 'false')
+            }
+            answers = []
+            chat.in(data.room).emit('broadcast', 'reset')
             console.log('down')
         }
         

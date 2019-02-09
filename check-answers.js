@@ -11,7 +11,7 @@ const stripAll = (s) => {
 	return s.replace(/[.,\/#!$%\^&@\*;:{}=\-_`~() ]/g,"").toLowerCase();
 }
 
-module.exports{
+module.exports = {
 	matchAnswers,
 	stripAll
 }
