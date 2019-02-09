@@ -6,6 +6,12 @@ var bodyParser = require('body-parser')
 const port = process.env.PORT || 8080;
 var app = express();
 
+
+//implement Json file
+const json = require('./json');
+const questions = require('./question');
+
+
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
@@ -101,5 +107,10 @@ chat.on('connection', (socket) => {
 
         chat.emit('message', 'user disconnected');
 
-    })
-})
+});
+
+
+// console.log('Loading...');
+// json.getQuestions(questions.getQuestions());
+//     })
+// })
