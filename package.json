@@ -1,7 +1,6 @@
 {
   "name": "hackthe90s",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +9,7 @@
     "type": "git",
     "url": "git+https://github.com/pkong97/hackthe90s.git"
   },
-  "author": "",
+  "author": "team90s",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/pkong97/hackthe90s/issues"
@@ -18,6 +17,11 @@
   "homepage": "https://github.com/pkong97/hackthe90s#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "hbs": "^4.0.1"
-  }
+    "file-system": "^2.2.2",
+    "hbs": "^4.0.1",
+    "lodash": "^4.17.11",
+    "yargs": "^12.0.5"
+  },
+  "devDependencies": {},
+  "description": ""
 }
