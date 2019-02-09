@@ -23,7 +23,7 @@
                     <form action="">
                         <div>
                             <input type="text" id="m" type="text" placeholder="Message..." aria-label="Message...">
-                            
+
                         </div>
                         <div id="answers">
 
@@ -44,9 +44,10 @@
         const socket = io('/chat');
         // array of questions
         var qs = {{{ questions }}};
+        console.log(qs);
         // qcount is to iterate over the qs array and to terminate
         // question asking when the list is exhausted
-        var qcount = 1;
+        var qcount = 0;
         // name of user
         var name = 'x';
         // an is used to disable the message box when the user answers
@@ -67,45 +68,41 @@
             })
             // after pressing enter or the send button
             $('form').submit(() => {
-                // get the next question in the array
-                qcount += 1;
                 // grab the message value then clear the input box
                 let msg = $('#m').val();
                 $('#m').val('');
                 // can't type another answer
                 $('#m').attr("disabled", "disabled");
-
                 // send to server
                 socket.emit('message', { msg, room, name, an });
-
-                // display question
-                if (qcount < qs.length) {
-                    console.log('appending')
-                    $('#messages').append($('<div>').text(qs[qcount]));
-                } else {
-                    socket.emit('questions are done');
-                }
-
                 return false;
-
-
             });
         })
+
+       
 
 
         socket.on('answer', function (data) {
             $('#answers').append($('<div>').text(data));
- 
+
         });
 
         socket.on('broadcast', function (data) {
             console.log('broadcast is: ' + data)
             $('#m').prop('disabled', false);
-           
+            // get the next question in the array
+            qcount += 1;
+            // display question
+            if (qcount < qs.length) {
+                console.log('appending')
+                $('#messages').append($('<div>').text(qs[qcount]));
+            } else {
+                socket.emit('questions are done');
+            }
         });
 
         socket.on('message', (msg, name, an) => {
-            
+
             if (name) {
                 $('#messages').append($('<div>').text(name + ": " + msg));
             } else {
