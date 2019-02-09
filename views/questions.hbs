@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Questions!</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <div style="width:100%;height:100%">
+            <div>
+                <button type="submit" id="start">Start</button>
+            </div>
+            <div id="chatroom" style="display:none;">
+                <div>
+                    Welcome {{user1}} and {{user2}}
+                </div>
+                <div class="row">
+                    <div id="messages"> </div>
+                </div>
+                <div>
+                    <form action="">
+                        <div>
+                            <input type="text" id="m" type="text" placeholder="Message..." aria-label="Message...">
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src='/socket.io/socket.io.js'></script>
+    <script>
+        const room = 'questions';
+        const socket = io('/chat');
+        // array of questions
+        var qs = {{{ questions }}};
+        // qcount is to iterate over the qs array and to terminate
+        // question asking when the list is exhausted
+        var qcount = 1;
+        // name of user
+        var name = 'x';
+        // an is used to disable the message box when the user answers
+        var an = 1;
+
+        socket.on('connect', () => {
+            // emitting to everybody
+            socket.emit('join', { room: room });
+        })
+
+        $(document).ready(function () {
+            // click the start button to display the chatroom
+            $("#start").click((event) => {
+                console.log('start')
+                $('#start').hide();
+                $('#chatroom').show();
+                $('#messages').append($('<div>').text(qs[0]));
+            })
+            // after pressing enter or the send button
+            $('form').submit(() => {
+                // get the next question in the array
+                qcount += 1;
+                // grab the message value then clear the input box
+                let msg = $('#m').val();
+                $('#m').val('');
+                // can't type another answer
+                $('#m').attr("disabled", "disabled");
+
+                // send to server
+                socket.emit('message', { msg, room, name, an });
+
+                // display question
+                if (qcount < qs.length) {
+                    console.log('appending')
+                    $('#messages').append($('<div>').text(qs[qcount]));
+                } else {
+                    socket.emit('questions are done');
+                }
+
+                return false;
+
+
+            });
+        })
+
+
+        socket.on('broadcast', function (data) {
+            console.log('broadcast is: ' + data)
+            $('#m').prop('disabled', false);
+           
+        });
+
+        socket.on('message', (msg, name, an) => {
+            
+            if (name) {
+                $('#messages').append($('<div>').text(name + ": " + msg));
+            } else {
+                $('#messages').append($('<div>').text(msg));
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>
