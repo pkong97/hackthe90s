@@ -58,6 +58,13 @@ app.post("/", function (req, res) {
     user1 = req.body.user.name
 });
 
+app.get('/congrats', (request, response) => {
+    score += 10;
+    response.render('congrats.hbs', {
+        score: score
+    })
+});
+
 app.get('/chatroom', (request, response) => {
     response.render('chatroom.hbs', {
         name: user1
@@ -81,7 +88,7 @@ app.post('/questions', (request, response) => {
 
 const chat = io.of('/chat');
 var answers = [];
-
+var score = 0;
 chat.on('connection', (socket) => {
 
     socket.on('join', (data) => {
@@ -105,7 +112,7 @@ chat.on('connection', (socket) => {
             }
         }
 
-
+        score = data.an;
 
         chat.in(data.room).emit('message', data.msg, data.name, data.an);
     });
