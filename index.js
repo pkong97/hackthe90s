@@ -51,11 +51,17 @@ server.listen(port, () => {
 
 app.get('/', (request, response) => {
     response.render('home.hbs')
+
 });
+
 app.post("/", function (req, res) {
-    console.log(req.body.user.name)
-    user1 = req.body.user.name
+    console.log(req.body.user.name);
+    user1 = req.body.user.name;
+    response.redirect('/loading');
+
+
 });
+
 
 app.get('/loading', (request, response) => {
     response.render('loading.hbs')
