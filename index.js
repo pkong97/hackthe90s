@@ -15,10 +15,10 @@ const checkAnswers = require('./check-answers');
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
+var publicDir = require('path').join(__dirname,'/views');
+app.use(express.static(publicDir));
 
 
-hbs.registerPartials(__dirname + '/views');
-hbs.registerPartials(__dirname + '/');
 app.set('view engine', 'hbs');
 
 var user1 = 'jeff';

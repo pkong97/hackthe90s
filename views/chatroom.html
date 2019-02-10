@@ -3,39 +3,28 @@
 
 <head>
     <title>Chatroom!</title>
-
+    
     <link href="style.css" rel="stylesheet" />
 </head>
 
 <body>
     <div>
         <div id="container">
-            <div id="chatbox">
-                <div id="header">
 
-                </div>
-                <div id="box">
-                    <div id="messagebox" class="row">
-                        <ul id="messages"> </ul>
-                    </div>
-                    <div>
-                        <form action="">
-                            <div>
-                                <input type="text" id="m" type="text" placeholder="Message..." aria-label="Message...">
-                                <div>
-                                    <button type="submit" class="">Send</button>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-
-                </div>
-                <div id="results">
-
-                </div>
+            <div class="row">
+                <ul id="messages"> </ul>
             </div>
+            <div>
+                <form action="">
+                    <div>
+                        <input type="text" id="m" type="text" placeholder="Message..." aria-label="Message...">
+                        <div>
+                            <button type="submit" class="">Send</button>
+                        </div>
+                    </div>
+                </form>
 
+            </div>
 
         </div>
     </div>
@@ -50,7 +39,7 @@
         const room = 'chatroom';
         const name = '{{{name}}}';
         const socket = io('/chat');
-
+        
         $('form').submit(() => {
             let msg = $('#m').val();
             socket.emit('message', { msg, room, name });

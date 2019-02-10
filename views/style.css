@@ -1,0 +1,41 @@
+#container {
+  width: 900px;
+  height: 800px;
+  background-image: url('chatbg.png');
+
+}
+#header {
+  background-size:cover;
+  background-image: url('header.png');
+  width:100%;
+  height:20%;
+}
+#chatbox {
+  width:600px;
+  height:400px;
+  background-color:'#f7f4e8';
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  margin:auto;
+}
+
+#box {
+  border: 5px solid #EB008C;
+  background-color:#f7f4e8;
+  float:left;
+  width:60%;
+}
+
+#messagebox {
+  background-color:white;
+}
+
+#results {
+  border: 5px solid #EB008C;
+  background-color:#f7f4e8;
+  float:right;
+  width:35%;
+}
