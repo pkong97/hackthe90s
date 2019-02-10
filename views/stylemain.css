@@ -3,21 +3,22 @@
   background-image:url('main.png') ;
   background-repeat: no-repeat;
   background-size: cover;
-  left: 0%;
-  right: 0%;
-  bottom:0%;
-  top: 0%;
+  left: 0;
+  right: 0;
+  bottom:0;
+  top: 0;
+  margin:auto;
   position: absolute;
-  width: 70%;
-  height: 100%;
+  width: 500px;
+  height: 500px;
 }
 #text{
-  top: 53%;
-  right:22%;
+  top: 41%;
+  right:20%;
   bottom: 0%;
   position: absolute;
-  width: 375px;
-  height: 8%;
+  width: 200px;
+  height: 6%;
   text-size-adjust: 40px;
   font-size-adjust: 80px;
   
@@ -25,12 +26,13 @@
 #button{
   background-image:url('button.png') ;
   background-repeat: no-repeat;
-  top: 53%;
-  right:31%;
+  background-size: cover;
+  top: 45%;
+  right:33%;
   bottom: 0%;
   position: absolute;
-  width: 155px;
-  height: 10%;
+  width: 90px;
+  height: 5%;
   text-size-adjust: 40px;
   font-size-adjust: 80px;
 }
