@@ -66,6 +66,7 @@ app.get('/congrats', (request, response) => {
 });
 
 app.get('/chatroom', (request, response) => {
+    console.log(user1)
     response.render('chatroom.hbs', {
         name: user1
     })
@@ -82,7 +83,7 @@ app.get('/questions', (request, response) => {
 
 });
 
-app.post('/questions', (request, response) => {
+app.post('/questions', (request, respon2se) => {
     console.log(request.body)
 })
 
