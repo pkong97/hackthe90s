@@ -34,8 +34,7 @@ app.set('view engine', 'hbs');
 var user1 = 'jeff';
 var user2 = 'gheff';
 var sq = []
-// bodyparser setup
-var bodyParser = require('body-parser')
+
 
 app.use(bodyParser.urlencoded({
     extended: true
