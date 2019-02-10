@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'laser'; /*a name to be used later*/
+    src: url("./Fonts/basicLAZER.otf"); /*URL to font*/
+  }
+  * {
+  
+    font-family:laser;
+  }
 #chatroom {
     width:600px;
     height:400px;
