@@ -27,6 +27,7 @@
   background-color:#f7f4e8;
   float:left;
   width:60%;
+  height:100%;
 }
 
 #messagebox {
@@ -38,4 +39,5 @@
   background-color:#f7f4e8;
   float:right;
   width:35%;
+  height:100%;
 }
