@@ -3,8 +3,9 @@ const hbs = require('hbs');
 const fs = require('fs');
 var bodyParser = require('body-parser')
 
-const port = process.env.PORT || 8080;
-var app = express();
+const port = process.env.PORT || 8000;
+// const app = express();
+var app = require('express')();
 
 
 //implement Json file
@@ -15,8 +16,17 @@ const checkAnswers = require('./check-answers');
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
+
+//this how we public the folder
+// app.use(express.static('/public'));
 var publicDir = require('path').join(__dirname,'/views');
 app.use(express.static(publicDir));
+
+
+
+// hbs.registerPartials(__dirname + '/views/');
+// hbs.registerPartials(__dirname + '/');
+//do post method, redirect to questions page, and change user1 name
 
 
 app.set('view engine', 'hbs');
@@ -26,10 +36,11 @@ var user2 = 'gheff';
 var sq = []
 // bodyparser setup
 var bodyParser = require('body-parser')
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 
 server.listen(port, () => {
@@ -41,6 +52,10 @@ server.listen(port, () => {
 
 app.get('/', (request, response) => {
     response.render('home.hbs')
+});
+app.post("/", function (req, res) {
+    console.log(req.body.user.name)
+    user1 = req.body.user.name
 });
 
 app.get('/loading', (request, response) => {
@@ -117,7 +132,6 @@ chat.on('connection', (socket) => {
 
     });
 });
-
 
 
 
