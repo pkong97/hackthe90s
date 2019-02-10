@@ -21,7 +21,13 @@
 <script>
         $('#button').click(function () {
             window.location.href = '/loading';
-        })
+        });
+
+        $('#text').on('keypress', (event)=> {
+            if(event.which === 13) {
+                window.location.href = '/loading';
+            }
+        });
         </script>
 
 </html>
