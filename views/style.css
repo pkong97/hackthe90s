@@ -1,12 +1,18 @@
 #container {
   width: 900px;
   height: 800px;
-  background-image: url('chatbg.png');
+  background-image: url('images/chatbg.png');
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  margin:auto;
 
 }
 #header {
   background-size:cover;
-  background-image: url('header.png');
+  background-image: url('images/header.png');
   width:100%;
   height:20%;
 }
@@ -32,6 +38,8 @@
 
 #messagebox {
   background-color:white;
+  font-family: "basicLAZER";
+
 }
 
 #results {
@@ -40,4 +48,13 @@
   float:right;
   width:35%;
   height:100%;
+}
+
+#enter {
+  position:absolute;
+}
+
+@font-face {
+  font-family: "basicLAZER";
+  src: url("css/fonts/basicLAZER.otf");
 }
