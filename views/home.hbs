@@ -4,6 +4,8 @@
 <head>
     <title>Home</title>
     <link href="stylemain.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 <body>
     <form method="post" action='/'>
@@ -16,5 +18,10 @@
     </div>
     
 </body>
+<script>
+        $('#button').click(function () {
+            window.location.href = '/loading';
+        })
+        </script>
 
 </html>
