@@ -4,7 +4,8 @@ const fs = require('fs');
 var bodyParser = require('body-parser')
 
 const port = process.env.PORT || 8080;
-var app = express();
+// const app = express();
+var app = require('express')();
 
 
 //implement Json file
@@ -15,9 +16,14 @@ const questions = require('./question');
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
+//this how we public the folder
+// app.use(express.static('/public'));
+var publicDir = require('path').join(__dirname,'/views');
+app.use(express.static(publicDir));
 
-hbs.registerPartials(__dirname + '/views');
-hbs.registerPartials(__dirname + '/');
+
+// hbs.registerPartials(__dirname + '/views/');
+// hbs.registerPartials(__dirname + '/');
 app.set('view engine', 'hbs');
 
 var user1 = 'jeff';
@@ -28,13 +34,12 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded ({
     extended: true
 }));
-app.use(bodyParser.json())
+hbs.use(bodyParser.json())
 
 
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
-
 
 
 app.get('/', (request, response) => {
@@ -99,9 +104,10 @@ chat.on('connection', (socket) => {
         chat.emit('message', 'user disconnected');
 
 });
+});
 
 
 // console.log('Loading...');
 // json.getQuestions(questions.getQuestions());
 //     })
-// })
+
