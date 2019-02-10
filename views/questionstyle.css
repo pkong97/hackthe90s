@@ -1,0 +1,45 @@
+#chatroom {
+    width:600px;
+    height:400px;
+    border: 10px solid #EB008C;
+    background-color:#f7f4e8;
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    margin:auto;
+}
+#score {
+    color:#f2ee68;
+    padding:30px;
+    background-color:#AC2BD8;
+    position: relative;
+    top:20px;
+    left:-30px;
+    width:200px;
+    height:30px;
+    font-size:2em;
+}
+#ques {
+    position: relative;
+    top:20%;
+    left:30%;
+    width:230px;
+    height:60px;
+}
+#inputbox {
+    position: relative;
+    top:30%;
+    left:30%;
+}
+
+#bullets {
+    position:relative;
+    
+}
+.bu {
+    color:#b2b2b2;
+    display: inline;
+    font-size:2em;
+}

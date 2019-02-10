@@ -3,19 +3,20 @@
 
 <head>
     <title>Questions!</title>
+    <link href="questionstyle.css" rel="stylesheet" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
     <div>
-        <div style="width:100%;height:100%">
-            <div>
-                <button type="submit" id="start">Start</button>
+
+        <div id="chatroom">
+            <div id="score">
+                Score:
             </div>
-            <div id="chatroom" style="display:none;">
-                <div>
-                    Welcome {{user1}} and {{user2}}
-                </div>
+
+            <div id="ques"></div>
+            <div id="inputbox">
                 <div class="row">
                     <div id="messages"> </div>
                 </div>
@@ -29,8 +30,43 @@
 
                         </div>
                     </form>
+                    <div id="bullets">
+                        <div class="bu" id="b1">
+                            ⬤
+                        </div>
+                        <div class="bu" id="b2">
+                            ⬤
+                        </div>
+                        <div class="bu" id="b3">
+                            ⬤
+                        </div>
+                        <div class="bu" id="b4">
+                            ⬤
+                        </div>
+                        <div class="bu" id="b5">
+                            ⬤
+                        </div>
+                        <div class="bu" id="b6">
+                            ⬤
+                        </div>
+                        <div class="bu" id="b7">
+                            ⬤
+                        </div>
+                        <div class="bu" id="b8">
+                            ⬤
+                        </div>
+                        <div class="bu" id="b9">
+                            ⬤
+                        </div>
+                        <div class="bu" id="b10">
+                            ⬤
+                        </div>
+                    </div>
+                    <button id="next_button" style="display:none" type="submit" class="">You Win</button>
                 </div>
             </div>
+
+
 
         </div>
     </div>
@@ -40,6 +76,9 @@
         crossorigin="anonymous"></script>
     <script src='/socket.io/socket.io.js'></script>
     <script>
+        $('#next_button').click(function () {
+            window.location.href = '/congrats';
+        })
         const room = 'questions';
         const socket = io('/chat');
         // array of questions
@@ -51,7 +90,7 @@
         // name of user
         var name = 'x';
         // an is used to disable the message box when the user answers
-        var an = 1;
+        var an = 0;
 
         socket.on('connect', () => {
             // emitting to everybody
@@ -59,13 +98,14 @@
         })
 
         $(document).ready(function () {
+            $('#ques').html(qs[qcount]);
             // click the start button to display the chatroom
-            $("#start").click((event) => {
+            /*$("#start").click((event) => {
                 console.log('start')
                 $('#start').hide();
                 $('#chatroom').show();
                 $('#messages').append($('<div>').text(qs[0]));
-            })
+            })*/
             // after pressing enter or the send button
             $('form').submit(() => {
                 // grab the message value then clear the input box
@@ -82,7 +122,18 @@
         // if server sends an answer then it will be displayed
         // here
         socket.on('answer', function (data) {
-            $('#answers').append($('<div>').text(data));
+
+            console.log(data)
+            var id_name = '#b' + (qcount + 1)
+            console.log(id_name)
+            if (data == 'true') {
+                an += 10
+                $('#score').html('Score: ' + an);
+                $(id_name).html('<img src="O.png">');
+            } else {
+                $(id_name).html('<img src="X.png">');
+            }
+
 
         });
 
@@ -97,18 +148,19 @@
             // display question
             if (qcount < qs.length) {
                 console.log('appending')
-                $('#messages').append($('<div>').text(qs[qcount]));
-            } else {
-                socket.emit('questions are done');
+                $('#ques').html(qs[qcount]);
+            } if (an >= 50) {
+                $('#next_button').show()
             }
         });
 
         // sends message to server to check if answers are the same
         socket.on('message', (msg, name, an) => {
+            an = an
             if (name) {
-                $('#messages').append($('<div>').text(name + ": " + msg));
+                //$('#messages').append($('<div>').text(name + ": " + msg));
             } else {
-                $('#messages').append($('<div>').text(msg));
+                // $('#messages').append($('<div>').text(msg));
             }
         })
 
