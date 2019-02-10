@@ -39,22 +39,31 @@
 #messagebox {
   background-color:white;
   font-family: "basicLAZER";
-
+  height: 317px;
+  padding: 5px;
 }
 
 #results {
   border: 5px solid #EB008C;
   background-color:#f7f4e8;
   float:right;
-  width:35%;
+  width:36.65%;
   height:100%;
 }
 
 #enter {
-  position:absolute;
+  position:right;
+}
+
+#res {
+  height:82%;
+}
+
+#m {
+  font-family: "basicLAZER";
 }
 
 @font-face {
   font-family: "basicLAZER";
-  src: url("css/fonts/basicLAZER.otf");
+  src: url('css/fonts/basicLAZER.otf');
 }
