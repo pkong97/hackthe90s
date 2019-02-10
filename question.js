@@ -11,21 +11,20 @@ var questions_list = {
             "Rate yourself on scale 10 when dating",
             "What is your favorite fruit?",
             "Instagram, spapchat, or Facebook or none",
-            "What is your favorite Holidays?",
-            "Your favorite color?",
-            "Are you here to date or make friends?",
-            "Are you closed to family or friends more?"],
+            "What is your favorite holiday?",
+            "What is your favorite colour?",
+            "Are you here to date or make friends?"],
 
     med : ["What do you do in your free time?",
            "What did you do last summer?",
            "Your favorite restaurant",
            "What is your favorite movie?",
-           "If you can send a present to your mom, what will you buy?"],
+           "If you can give any present to your mom, what would it be?"],
 
-    hard: ["What type of music you like?",
-          "Disgusting food that you have ever had in your life",
+    hard: ["What is your favourite genre of music?",
+          "Most disgusting food that you you have ever had",
           "What was your favorite age?",
-          "If you can travel in time, you will go to the past or future?",
+          "If you could time travel, you will go to the past or future?",
           ]
 }
 //get random questions 
