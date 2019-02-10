@@ -2,11 +2,11 @@
  # [Get a Room](https://devpost.com/software/get-a-room-x0ewl1)
  
  ## Authors
-Patrick Kong -- PostgreSQL database API, front-end development
-Le Nguyen -- JSON design and generation, front-end development
-Bonnie Chen -- UI Designer
-Rachel Bae -- UI Designer
-Sorina Chirhei -- Socket.io implementation, backend logic
+ Patrick Kong -- PostgreSQL database API, front-end development\
+ Le Nguyen -- JSON design and generation, front-end development\
+ Bonnie Chen -- UI Designer\
+ Rachel Bae -- UI Designer\
+ Sorina Chirhei -- Socket.io implementation, backend logic
  
  ## Inspiration
 The 90's was rife with internet chat rooms - AOL, MSN, Yahoo! Pager... There's something remarkably fun about jumping into a room anonymously and meeting interesting people. We wanted to bring that experience to the 21st century, but with a romantic twist!
