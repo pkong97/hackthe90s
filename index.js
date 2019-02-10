@@ -43,6 +43,10 @@ app.get('/', (request, response) => {
     response.render('home.hbs')
 });
 
+app.get('/loading', (request, response) => {
+    response.render('loading.hbs')
+});
+
 app.get('/congrats', (request, response) => {
     score += 10;
     response.render('congrats.hbs', {
@@ -74,6 +78,7 @@ app.post('/questions', (request, response) => {
 const chat = io.of('/chat');
 var answers = [];
 var score = 0;
+
 chat.on('connection', (socket) => {
 
     socket.on('join', (data) => {
