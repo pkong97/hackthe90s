@@ -1,0 +1,42 @@
+
+#main{
+  background-image:url('main.png') ;
+  background-repeat: no-repeat;
+  background-size: cover;
+  left: 0%;
+  right: 0%;
+  bottom:0%;
+  top: 0%;
+  position: absolute;
+  width: 70%;
+  height: 100%;
+}
+#text{
+  top: 53%;
+  right:22%;
+  bottom: 0%;
+  position: absolute;
+  width: 375px;
+  height: 8%;
+  text-size-adjust: 40px;
+  font-size-adjust: 80px;
+  
+}
+#button{
+  background-image:url('button.png') ;
+  background-repeat: no-repeat;
+  top: 53%;
+  right:31%;
+  bottom: 0%;
+  position: absolute;
+  width: 155px;
+  height: 10%;
+  text-size-adjust: 40px;
+  font-size-adjust: 80px;
+}
+#button:hover{
+  background-color:white}
+input[type=text]{
+    font-size: 34px;
+ 
+}
