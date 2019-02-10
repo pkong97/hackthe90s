@@ -34,8 +34,7 @@ app.set('view engine', 'hbs');
 var user1 = 'jeff';
 var user2 = 'gheff';
 var sq = []
-// bodyparser setup
-var bodyParser = require('body-parser')
+
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -56,6 +55,10 @@ app.get('/', (request, response) => {
 app.post("/", function (req, res) {
     console.log(req.body.user.name)
     user1 = req.body.user.name
+});
+
+app.get('/loading', (request, response) => {
+    response.render('loading.hbs')
 });
 
 app.get('/congrats', (request, response) => {
@@ -90,6 +93,7 @@ app.post('/questions', (request, respon2se) => {
 const chat = io.of('/chat');
 var answers = [];
 var score = 0;
+
 chat.on('connection', (socket) => {
 
     socket.on('join', (data) => {
