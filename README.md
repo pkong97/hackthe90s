@@ -1,6 +1,6 @@
  ![logo](https://github.com/pkong97/hackthe90s/blob/master/views/images/LOGO.png)
  # [Get a Room](https://devpost.com/software/get-a-room-x0ewl1)
- 
+ Try it out with a friend at http://getaroom90s.herokuapp.com/ (chrome only)
  ## Authors
  Patrick Kong -- PostgreSQL database API, front-end development\
  Le Nguyen -- JSON design and generation, front-end development\
